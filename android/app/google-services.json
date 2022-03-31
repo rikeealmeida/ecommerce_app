@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "614623463433",
+    "project_id": "lojavirtual-bb429",
+    "storage_bucket": "lojavirtual-bb429.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614623463433:android:5c90eafba13f431e8550d8",
+        "android_client_info": {
+          "package_name": "br.com.almeida.app_gerencia_loja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614623463433-sqed0pfki2dhkkggtdlhkun1r8gttjah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2ik32RHEyTgiPRfcFUxEpJyuG8isYrfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614623463433-sqed0pfki2dhkkggtdlhkun1r8gttjah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "614623463433-12sltmcasr9l59n5rvjgc3d6m772fkmf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.almeida.loja-virtual"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614623463433:android:742e4c4f13c4f1ac8550d8",
+        "android_client_info": {
+          "package_name": "br.com.almeida.flutter_ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614623463433-sqed0pfki2dhkkggtdlhkun1r8gttjah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2ik32RHEyTgiPRfcFUxEpJyuG8isYrfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614623463433-sqed0pfki2dhkkggtdlhkun1r8gttjah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "614623463433-12sltmcasr9l59n5rvjgc3d6m772fkmf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.almeida.loja-virtual"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
