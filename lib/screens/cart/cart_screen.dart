@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
       appBar: const CustomAppBar(
         title: "Carrinho",
       ),
-      bottomNavigationBar: CustomNavBar(screen: routeName),
+      bottomNavigationBar:const CustomNavBar(screen: routeName),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           if (state is CartLoading) {
