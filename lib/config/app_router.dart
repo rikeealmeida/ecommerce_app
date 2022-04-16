@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/models/models.dart';
+import 'package:flutter_ecommerce/screens/login_screen/login_screen.dart';
+import 'package:flutter_ecommerce/screens/order_confirmation_screen/order_confirmation_screen.dart';
+import 'package:flutter_ecommerce/screens/register_screen/register_screen.dart';
 
 import '../screens/screens.dart';
 
@@ -12,6 +15,10 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return SplashScreen.route();
+      case LoginScreen.routeName:
+        return LoginScreen.route();
+      case RegisterScreen.routeName:
+        return RegisterScreen.route();
       case HomeScreen.routeName:
         return HomeScreen.route();
       case CartScreen.routeName:
@@ -24,6 +31,8 @@ class AppRouter {
         return WishList.route();
       case CheckoutScreen.routeName:
         return CheckoutScreen.route();
+      case OrderConfirmation.routeName:
+        return OrderConfirmation.route();
 
       default:
         return _errorRoute();

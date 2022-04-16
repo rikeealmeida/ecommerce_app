@@ -6,3 +6,4 @@ export 'product_card.dart';
 export 'products_carousel.dart';
 export 'cart_product_card.dart';
 export 'order_sumary.dart';
+export 'order_sumary_product_card.dart';

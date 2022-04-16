@@ -35,7 +35,7 @@ class ProductCard extends StatelessWidget {
             width: width / widthFactor,
             height: 150,
             child: Image.network(
-              product.images[0],
+              product.imageUrl,
               fit: BoxFit.cover,
             ),
           ),
@@ -81,7 +81,7 @@ class ProductCard extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis),
                           ),
                           Text(
-                            "R\$ ${product.price}",
+                            "R\$ ${product.price.toStringAsFixed(2)}",
                             style: Theme.of(context)
                                 .textTheme
                                 .headline6
@@ -93,8 +93,10 @@ class ProductCard extends StatelessWidget {
                     BlocBuilder<CartBloc, CartState>(
                       builder: (context, state) {
                         if (state is CartLoading) {
-                          return Center(
-                            child: CircularProgressIndicator(),
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
                           );
                         }
                         if (state is CartLoaded) {
@@ -103,7 +105,7 @@ class ProductCard extends StatelessWidget {
                               onPressed: () {
                                 context
                                     .read<CartBloc>()
-                                    .add(CartProductAdded(product));
+                                    .add(AddProduct(product));
                                 const snackBar = SnackBar(
                                   duration: Duration(seconds: 1),
                                   content:
@@ -130,7 +132,7 @@ class ProductCard extends StatelessWidget {
                               return IconButton(
                                 onPressed: () {
                                   context.read<WishListBloc>().add(
-                                        RemoveWishlistProduct(product),
+                                        RemoveProductFromWishList(product),
                                       );
                                   const snackBar = SnackBar(
                                     content: Text(

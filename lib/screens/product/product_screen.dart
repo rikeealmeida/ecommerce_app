@@ -46,7 +46,7 @@ class ProductScreen extends StatelessWidget {
               return IconButton(
                 onPressed: () {
                   context.read<WishListBloc>().add(
-                        AddWishlistProduct(product),
+                        AddProductToWishList(product),
                       );
 
                   const snackBar = SnackBar(
@@ -65,7 +65,7 @@ class ProductScreen extends StatelessWidget {
                 return ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.white),
                   onPressed: () {
-                    context.read<CartBloc>().add(CartProductAdded(product));
+                    context.read<CartBloc>().add(AddProduct(product));
                     Navigator.pushNamed(context, '/cart');
                   },
                   child: Text(
@@ -122,7 +122,7 @@ class ProductScreen extends StatelessWidget {
                               .copyWith(color: Colors.white),
                         ),
                         Text(
-                          'R\$ ${product.price}',
+                          'R\$ ${product.price.toStringAsFixed(2)}',
                           style: Theme.of(context)
                               .textTheme
                               .headline5

@@ -20,7 +20,7 @@ class CartProductCard extends StatelessWidget {
       child: Row(
         children: [
           Image.network(
-            product.images[0],
+            product.imageUrl,
             width: 100,
             height: 80,
             fit: BoxFit.cover,
@@ -37,7 +37,7 @@ class CartProductCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 Text(
-                  "R\$ ${product.price}",
+                  "R\$ ${product.price.toStringAsFixed(2)}",
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],
@@ -52,7 +52,7 @@ class CartProductCard extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      context.read<CartBloc>().add(CartProductRemoved(product));
+                      context.read<CartBloc>().add(RemoveProduct(product));
                     },
                     icon: const Icon(Icons.remove_circle),
                   ),
@@ -62,7 +62,7 @@ class CartProductCard extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      context.read<CartBloc>().add(CartProductAdded(product));
+                      context.read<CartBloc>().add(AddProduct(product));
                     },
                     icon: const Icon(Icons.add_circle),
                   ),

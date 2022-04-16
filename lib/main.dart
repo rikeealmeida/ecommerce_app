@@ -1,25 +1,23 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce/blocs/cart/cart_bloc.dart';
-import 'package:flutter_ecommerce/blocs/checkout/checkout_bloc.dart';
-import 'package:flutter_ecommerce/blocs/product/product_bloc.dart';
-import 'package:flutter_ecommerce/blocs/wishlist/wishlist_bloc.dart';
-import 'package:flutter_ecommerce/blocs/wishlist/wishlist_event.dart';
+import 'package:flutter_ecommerce/blocs/auth/auth_bloc.dart';
+import 'blocs/bloc_observer.dart';
+import 'blocs/blocs.dart';
 import 'package:flutter_ecommerce/config/app_router.dart';
 import 'package:flutter_ecommerce/repositories/category/category_repository.dart';
 import 'package:flutter_ecommerce/repositories/checkout/checkout_repository.dart';
 import 'package:flutter_ecommerce/repositories/product/product_repository.dart';
 import 'package:flutter_ecommerce/screens/screens.dart';
 
-import 'blocs/category/category_bloc.dart';
+import 'blocs/wishlist/wishlist_event.dart';
 import 'config/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Bloc.observer = BlocObserver();
   runApp(const MyApp());
+  Bloc.observer = MyBlocObserver();
 }
 
 class MyApp extends StatelessWidget {
@@ -29,12 +27,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => CartBloc()..add(CartStarted())),
+        BlocProvider(
+            create: (_) =>
+                AuthBloc()),
+        BlocProvider(create: (_) => CartBloc()..add(LoadCart())),
         BlocProvider(
             create: (context) => CheckoutBloc(
                 cartBloc: context.read<CartBloc>(),
                 checkoutRepository: CheckoutRepository())),
-        BlocProvider(create: (_) => WishListBloc()..add(StartWishlist())),
+        BlocProvider(create: (_) => WishListBloc()..add(LoadWishList())),
         BlocProvider(
             create: (_) =>
                 CategoryBloc(categoryRepository: CategoryRepository())

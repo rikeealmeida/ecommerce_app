@@ -69,6 +69,8 @@ class CustomNavBar extends StatelessWidget {
         return _buildNavBar(context);
       case '/wishlist':
         return _buildNavBar(context);
+      case '/order-confirmation':
+        return _buildNavBar(context);
       case '/product':
         return _buildAddToCartNavBar(context, product);
       case '/cart':
@@ -122,7 +124,7 @@ class CustomNavBar extends StatelessWidget {
                 final snackBar =
                     SnackBar(content: Text('Adicionado a lista de desejos'));
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                context.read<WishListBloc>().add(AddWishlistProduct(product));
+                context.read<WishListBloc>().add(AddProductToWishList(product));
               },
             );
           }
@@ -137,7 +139,7 @@ class CustomNavBar extends StatelessWidget {
           if (state is CartLoaded) {
             return ElevatedButton(
               onPressed: () {
-                context.read<CartBloc>().add(CartProductAdded(product));
+                context.read<CartBloc>().add(AddProduct(product));
                 Navigator.pushNamed(context, '/cart');
               },
               style: ElevatedButton.styleFrom(
@@ -189,6 +191,8 @@ class CustomNavBar extends StatelessWidget {
                 context
                     .read<CheckoutBloc>()
                     .add(ConfirmCheckout(checkout: state.checkout));
+
+                Navigator.pushNamed(context, '/order-confirmation');
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,

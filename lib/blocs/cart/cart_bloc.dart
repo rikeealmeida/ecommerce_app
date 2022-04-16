@@ -6,63 +6,48 @@ import '../../models/models.dart';
 part 'cart_event.dart';
 part 'cart_state.dart';
 
-
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartLoading());
-
-  @override
-  Stream<CartState> mapEventToState(
-    CartEvent event,
-  ) async* {
-    if (event is CartStarted) {
-      yield* _mapCartStartedToState();
-    } else if (event is CartProductAdded) {
-      yield* _mapCartProductAddedToState(event, state);
-    } else if (event is CartProductRemoved) {
-      yield* _mapCartProductRemovedToState(event, state);
-    }
+  CartBloc() : super(CartLoading()) {
+    on<LoadCart>(_onLoadCart);
+    on<AddProduct>(_onAddProduct);
+    on<RemoveProduct>(_onRemoveProduct);
   }
 
-  Stream<CartState> _mapCartStartedToState() async* {
-    yield CartLoading();
+  void _onLoadCart(event, Emitter<CartState> emit) async {
+    emit(CartLoading());
     try {
       await Future<void>.delayed(const Duration(seconds: 1));
-      yield const CartLoaded();
+      emit(const CartLoaded());
     } catch (_) {
-      yield CartError();
+      emit(CartError());
     }
   }
 
-  Stream<CartState> _mapCartProductAddedToState(
-    CartProductAdded event,
-    CartState state,
-  ) async* {
+  void _onAddProduct(event, Emitter<CartState> emit) {
+    final state = this.state;
     if (state is CartLoaded) {
       try {
-        yield CartLoaded(
-          cart: Cart(
-            products: List.from(state.cart.products)..add(event.product),
-          ),
-        );
+        emit(CartLoaded(
+            cart: Cart(
+          products: List.from(state.cart.products)..add(event.product),
+        )));
       } on Exception {
-        yield CartError();
+        emit(CartError());
       }
     }
   }
 
-  Stream<CartState> _mapCartProductRemovedToState(
-    CartProductRemoved event,
-    CartState state,
-  ) async* {
+  void _onRemoveProduct(event, Emitter<CartState> emit) {
+    final state = this.state;
     if (state is CartLoaded) {
       try {
-        yield CartLoaded(
+        emit(CartLoaded(
           cart: Cart(
             products: List.from(state.cart.products)..remove(event.product),
           ),
-        );
+        ));
       } on Exception {
-        yield CartError();
+        emit(CartError());
       }
     }
   }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/config/colors.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -18,11 +19,15 @@ class SplashScreen extends StatelessWidget {
       const Duration(
         seconds: 2,
       ),
-      () => Navigator.popAndPushNamed(context, '/home'),
+      () => Navigator.popAndPushNamed(
+        context,
+        '/login-screen',
+      ),
     );
+
     return Scaffold(
       body: Container(
-        color: const Color(0xFFF8DBDD),
+        color: AppColors.primaryColor,
         child: const Center(
           child: Image(
             image: AssetImage("assets/images/logo.png"),

@@ -31,7 +31,7 @@ class HeroCarouselCard extends StatelessWidget {
             //   item,
             // )),
             Image.network(
-              product == null ? category.imageUrl : product.images[0],
+              product == null ? category.imageUrl : product.imageUrl,
               fit: BoxFit.cover,
               width: 1000.0,
             ),
